@@ -12,6 +12,7 @@ public class DayNightCycleController : MonoBehaviour
     [SerializeField] private float timeOfDay;
 
     [SerializeField] private float orbitSpeed = 1.0f;
+    [SerializeField] private bool pause;
 
     [Header ("CELESTIALS")]
     [SerializeField] private Light sun;
@@ -40,6 +41,9 @@ public class DayNightCycleController : MonoBehaviour
     #region CLASS_REG
     private void UpdateTime()
     {
+        if(pause)
+            return;
+
         timeOfDay += Time.deltaTime * orbitSpeed;
         if (timeOfDay > 24)
             timeOfDay = 0f;
